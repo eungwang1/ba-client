@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -4075,3 +4076,45 @@ export type SendMessageToTelegramOutput = {
   error?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
+
+export type GetKeywordSearchCountQueryVariables = Exact<{
+  input: GetKeywordSearchCountInput;
+}>;
+
+
+export type GetKeywordSearchCountQuery = { __typename?: 'Query', getKeywordSearchCount: { __typename?: 'GetKeywordSearchCountOutput', error?: string | null, ok: boolean, keywordList?: Array<{ __typename?: 'NaverKeywordSearchCount', monthlyMobileQcCnt: number, monthlyPcQcCnt: number, relKeyword: string }> | null } };
+
+export type GetBlogCategoryListQueryVariables = Exact<{
+  input: GetBlogCategoryListInput;
+}>;
+
+
+export type GetBlogCategoryListQuery = { __typename?: 'Query', getBlogCategoryList: { __typename?: 'GetBlogCategoryListOutput', error?: string | null, ok: boolean, postCnt?: number | null, categories?: Array<{ __typename?: 'BlogCategory', categoryName: string, postCnt: number }> | null } };
+
+export type GetSearchAvailabilityQueryVariables = Exact<{
+  input: GetSearchAvailabilityInput;
+}>;
+
+
+export type GetSearchAvailabilityQuery = { __typename?: 'Query', getSearchAvailability: { __typename?: 'GetSearchAvailabilityOutput', error?: string | null, ok: boolean, posts?: Array<{ __typename?: 'NaverPostInfo', isSearchAvailability: boolean, commentCnt: number, link: string, logNo: number, sympathyCnt: number, titleWithInspectMessage: string, thumbnailCount: number }> | null } };
+
+export type GetSearchRankQueryVariables = Exact<{
+  input: GetSearchRankInput;
+}>;
+
+
+export type GetSearchRankQuery = { __typename?: 'Query', getSearchRank: { __typename?: 'GetSearchRankOutput', daumBlogSearchRank?: number | null, naverBlogSearchRank?: number | null, ok: boolean, error?: string | null, postLink?: string | null } };
+
+export type GetBlogInfoQueryVariables = Exact<{
+  input: GetBlogInfoInput;
+}>;
+
+
+export type GetBlogInfoQuery = { __typename?: 'Query', getBlogInfo: { __typename?: 'GetBlogInfoOutput', ok: boolean, error?: string | null, blogInfo?: { __typename?: 'BlogInfo', blogName: string, subscriberCount: number, blogDirectoryName: string, totalVisitorCount: number, influencerUrl: string, blogVisitor?: Array<{ __typename?: 'BlogVisitor', visitor: string, date: string }> | null } | null } };
+
+
+export const GetKeywordSearchCountDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetKeywordSearchCount"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetKeywordSearchCountInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getKeywordSearchCount"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"keywordList"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"monthlyMobileQcCnt"}},{"kind":"Field","name":{"kind":"Name","value":"monthlyPcQcCnt"}},{"kind":"Field","name":{"kind":"Name","value":"relKeyword"}}]}}]}}]}}]} as unknown as DocumentNode<GetKeywordSearchCountQuery, GetKeywordSearchCountQueryVariables>;
+export const GetBlogCategoryListDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetBlogCategoryList"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetBlogCategoryListInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getBlogCategoryList"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categoryName"}},{"kind":"Field","name":{"kind":"Name","value":"postCnt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"postCnt"}}]}}]}}]} as unknown as DocumentNode<GetBlogCategoryListQuery, GetBlogCategoryListQueryVariables>;
+export const GetSearchAvailabilityDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSearchAvailability"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetSearchAvailabilityInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSearchAvailability"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isSearchAvailability"}},{"kind":"Field","name":{"kind":"Name","value":"commentCnt"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"logNo"}},{"kind":"Field","name":{"kind":"Name","value":"sympathyCnt"}},{"kind":"Field","name":{"kind":"Name","value":"titleWithInspectMessage"}},{"kind":"Field","name":{"kind":"Name","value":"thumbnailCount"}}]}}]}}]}}]} as unknown as DocumentNode<GetSearchAvailabilityQuery, GetSearchAvailabilityQueryVariables>;
+export const GetSearchRankDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSearchRank"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetSearchRankInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSearchRank"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"daumBlogSearchRank"}},{"kind":"Field","name":{"kind":"Name","value":"naverBlogSearchRank"}},{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"postLink"}}]}}]}}]} as unknown as DocumentNode<GetSearchRankQuery, GetSearchRankQueryVariables>;
+export const GetBlogInfoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetBlogInfo"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetBlogInfoInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getBlogInfo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"blogInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blogName"}},{"kind":"Field","name":{"kind":"Name","value":"subscriberCount"}},{"kind":"Field","name":{"kind":"Name","value":"blogDirectoryName"}},{"kind":"Field","name":{"kind":"Name","value":"totalVisitorCount"}},{"kind":"Field","name":{"kind":"Name","value":"blogVisitor"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"visitor"}},{"kind":"Field","name":{"kind":"Name","value":"date"}}]}},{"kind":"Field","name":{"kind":"Name","value":"influencerUrl"}}]}}]}}]}}]} as unknown as DocumentNode<GetBlogInfoQuery, GetBlogInfoQueryVariables>;

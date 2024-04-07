@@ -1,0 +1,7 @@
+table {
+    width: 100% !important;
+    min-width: 800px !important;
+    .ant-table-cell {
+      min-width: 60px !important;
+    }
+  }
