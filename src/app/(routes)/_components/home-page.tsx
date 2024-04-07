@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { Tabs, TabsProps } from "antd";
 import KeywordTab from "./keyword-tab";
 import "../_lib/styles/home-page.css";
@@ -9,9 +9,11 @@ interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
   return (
-    <div className="max-w-screen-xl mx-auto p-5">
-      <Tabs items={tabItems} />
-    </div>
+    <Suspense>
+      <div className="max-w-screen-xl mx-auto p-5">
+        <Tabs items={tabItems} />
+      </div>
+    </Suspense>
   );
 };
 
