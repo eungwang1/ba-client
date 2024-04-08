@@ -49,7 +49,8 @@ export const GET_SEARCH_AVAILABILITY = gql`
 export const GET_POST_SEARCH_RANK = gql`
   query GetSearchRank($input: GetSearchRankInput!) {
     getSearchRank(input: $input) {
-      daumBlogSearchRank
+      naverSmartSearchRank
+      naverSmartSearchTitle
       naverBlogSearchRank
       ok
       error

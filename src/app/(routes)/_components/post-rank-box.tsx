@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { BLOG_RANK_HISTORY_KEY } from "../_lib/constants/storageKey";
 import { useQueryClient } from "@tanstack/react-query";
 import { LocalStorage } from "@/app/_lib/utils/localStorage";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import usePostSearchRank from "../_lib/hooks/usePostSearchRank";
 import { uniqueId } from "lodash";
 import { Input } from "antd";
 
 interface RankHistory {
   keyword: string;
-  naver: number;
-  daum: number;
+  blogRank: number;
+  smartRank: number;
+  smartTitle: string;
   id: string;
 }
 
@@ -19,7 +20,6 @@ interface PostRankBoxProps {
 }
 
 const PostRankBox: React.FC<PostRankBoxProps> = ({ logNo }) => {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const blogId = searchParams.get("b");
   const page = Number(searchParams.get("p"));
@@ -28,7 +28,16 @@ const PostRankBox: React.FC<PostRankBoxProps> = ({ logNo }) => {
   const [keyword, setKeyword] = useState<string>("");
   const [histories, setHistories] = useState<RankHistory[]>([]);
   const { data, isLoading } = usePostSearchRank(keyword);
-  const saveRankHistory = ({ keyword, naver, daum, id }: RankHistory) => {
+  const blogRankText = (blogRank: number) => `블로그탭: ${blogRank || "x"}`;
+  const smartRankText = (smartRank: number, smartTitle: string) =>
+    smartRank ? `스마트탭:  ${smartRank || "x"}(${smartTitle})` : "스마트탭: x";
+  const saveRankHistory = ({
+    keyword,
+    blogRank,
+    smartRank,
+    smartTitle,
+    id,
+  }: RankHistory) => {
     if (!blogId) return;
     const histories = storage.get(BLOG_RANK_HISTORY_KEY);
     const newRankHistory = {
@@ -36,8 +45,9 @@ const PostRankBox: React.FC<PostRankBoxProps> = ({ logNo }) => {
         [logNo]: [
           {
             keyword,
-            naver,
-            daum,
+            blogRank,
+            smartRank,
+            smartTitle,
             id,
           },
         ],
@@ -62,8 +72,9 @@ const PostRankBox: React.FC<PostRankBoxProps> = ({ logNo }) => {
           [logNo]: [
             {
               keyword,
-              naver,
-              daum,
+              blogRank,
+              smartRank,
+              smartTitle,
               id,
             },
           ],
@@ -77,8 +88,9 @@ const PostRankBox: React.FC<PostRankBoxProps> = ({ logNo }) => {
         [logNo]: [
           {
             keyword,
-            naver,
-            daum,
+            blogRank,
+            smartRank,
+            smartTitle,
             id,
           },
           ...prevMyHistory[logNo],
@@ -115,16 +127,18 @@ const PostRankBox: React.FC<PostRankBoxProps> = ({ logNo }) => {
       setHistories((prev) => [
         {
           keyword,
-          naver: data.naverBlogSearchRank || 0,
-          daum: data.daumBlogSearchRank || 0,
+          blogRank: data.naverBlogSearchRank || 0,
+          smartRank: data.naverSmartSearchRank || 0,
+          smartTitle: data.naverSmartSearchTitle || "",
           id,
         },
         ...prev,
       ]);
       saveRankHistory({
         keyword,
-        naver: data.naverBlogSearchRank || 0,
-        daum: data.daumBlogSearchRank || 0,
+        blogRank: data.naverBlogSearchRank || 0,
+        smartRank: data.naverSmartSearchRank || 0,
+        smartTitle: data.naverSmartSearchTitle || "",
         id,
       });
     }
@@ -162,9 +176,8 @@ const PostRankBox: React.FC<PostRankBoxProps> = ({ logNo }) => {
           >
             <div>
               <div>{history.keyword}</div>
-              <div>{`네이버: ${history.naver || "x"} / 다음: ${
-                history.daum || "x"
-              }`}</div>
+              <div>{blogRankText(history.blogRank)}</div>
+              <div>{smartRankText(history.smartRank, history.smartTitle)}</div>
             </div>
             <button
               onClick={() => {
