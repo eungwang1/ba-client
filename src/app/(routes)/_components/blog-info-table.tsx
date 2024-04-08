@@ -3,19 +3,32 @@ import React, { useMemo } from "react";
 import useBlogCategoryList from "../_lib/hooks/useBlogCategoryList";
 import useBlogInfo from "../_lib/hooks/useBlogInfo";
 import { blogInfoColumns } from "../_lib/constants/table";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 interface BlogInfoTableProps {}
 
 const BlogInfoTable: React.FC<BlogInfoTableProps> = () => {
+  const searchParams = useSearchParams();
   const { data: categoryList, isLoading: categoryListLoading } =
     useBlogCategoryList();
+  const blogId = searchParams.get("b");
   const { data: blogInfo, isLoading: blogInfoLoading } = useBlogInfo();
   const formattedBlogInfo = useMemo(
     () =>
       blogInfo?.blogInfo
         ? [
             {
-              blogName: blogInfo.blogInfo.blogName,
+              blogName: (
+                <a
+                  href={`https://blog.naver.com/${blogId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black underline hover:underline"
+                >
+                  {blogInfo.blogInfo.blogName}
+                </a>
+              ),
               totalVisitorCount:
                 blogInfo.blogInfo.totalVisitorCount.toLocaleString(),
               blogDirectoryName: blogInfo.blogInfo.blogDirectoryName,

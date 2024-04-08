@@ -46,7 +46,7 @@ export const blogInfoColumns: ColumnsType = [
     key: "totalVisitorCount",
   },
   {
-    title: "주제",
+    title: "분야",
     dataIndex: "blogDirectoryName",
     key: "blogDirectoryName",
   },

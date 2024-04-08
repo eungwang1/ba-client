@@ -52,11 +52,8 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
           <a
             href={post.link}
             target="_blank"
-            rel="noreferrer"
-            style={{
-              color: token.colorText,
-              textDecoration: "underline",
-            }}
+            rel="noopener noreferrer"
+            className="text-black underline hover:underline"
           >
             {post.titleWithInspectMessage}
           </a>
