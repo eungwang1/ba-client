@@ -3,6 +3,7 @@
 import React, { Suspense } from "react";
 import { Tabs, TabsProps } from "antd";
 import KeywordTab from "./keyword-tab";
+import BlogAnalysisTab from "./blog-analysis-tab";
 import "../_lib/styles/home-page.css";
 
 interface HomePageProps {}
@@ -25,9 +26,9 @@ const tabItems: TabsProps["items"] = [
     label: "키워드",
     children: <KeywordTab />,
   },
-  // {
-  //   key: 'analysis',
-  //   label: '분석',
-  //   children: <BlogAnalysis />,
-  // },
+  {
+    key: "analysis",
+    label: "분석",
+    children: <BlogAnalysisTab />,
+  },
 ];

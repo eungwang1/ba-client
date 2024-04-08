@@ -5,3 +5,11 @@ table {
       min-width: 60px !important;
     }
   }
+
+.ant-tag {
+  cursor: pointer !important;
+  margin: 0 !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  padding: 0 10px !important;
+}
