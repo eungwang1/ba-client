@@ -14,7 +14,7 @@ const usePostSearchRank = (keyword: string) => {
     queryKey: ["searchRank", blogId, keyword],
     queryFn: async () => {
       try {
-        if (!blogId || !keyword) return;
+        if (!blogId || !keyword) return null;
         const res = await client.request<
           GetSearchRankQuery,
           GetSearchRankQueryVariables
