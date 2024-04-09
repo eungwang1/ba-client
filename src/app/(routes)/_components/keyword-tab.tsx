@@ -25,7 +25,7 @@ const KeywordTab: React.FC<KeywordTabProps> = () => {
         loading={isLoading}
       />
       <Table
-        className="mt-5 w-full"
+        className="mt-4 w-full"
         loading={{
           spinning: isLoading,
         }}

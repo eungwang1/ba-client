@@ -17,8 +17,13 @@ const AnalysisHistoryTagList: React.FC<AnalysisHistoryTagListProps> = () => {
   const blogId = searchParams.get("b");
   const { data: categoryList } = useBlogCategoryList();
   const [analysisHistory, setAnalysisHistory] = useState<string[]>([]);
-  const handleDeleteHistory = (blogId: string) => {
-    const newHistory = analysisHistory.filter((history) => history !== blogId);
+
+  const handleDeleteHistory = (id: string) => {
+    if (id === extractBlogId(String(blogId))) {
+      params.delete("b");
+      router.push(`${pathname}?${params.toString()}`);
+    }
+    const newHistory = analysisHistory.filter((history) => history !== id);
     setAnalysisHistory(newHistory);
     storage.set(BLOG_ANALYSIS_HISTORY_KEY, newHistory);
   };
@@ -40,17 +45,19 @@ const AnalysisHistoryTagList: React.FC<AnalysisHistoryTagListProps> = () => {
     }
   }, [categoryList]);
 
+  const onClickTag = (blogId: string) => {
+    params.set("b", blogId);
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
   return (
-    <div className="mt-3">
+    <div className="mt-3 flex gap-2">
       {analysisHistory.length > 0 &&
         analysisHistory.map((blogId, index) => (
           <Tag
             closable
             key={blogId}
-            onClick={() => {
-              params.set("b", blogId);
-              router.push(`${pathname}?${params.toString()}`);
-            }}
+            onClick={() => onClickTag(blogId)}
             onClose={() => handleDeleteHistory(blogId)}
             color={index === 0 ? "blue" : "default"}
           >

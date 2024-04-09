@@ -16,7 +16,7 @@ const BlogInfoTable: React.FC<BlogInfoTableProps> = () => {
   const { data: blogInfo, isLoading: blogInfoLoading } = useBlogInfo();
   const formattedBlogInfo = useMemo(
     () =>
-      blogInfo?.blogInfo
+      blogInfo?.blogInfo?.blogName
         ? [
             {
               blogName: (
@@ -68,7 +68,7 @@ const BlogInfoTable: React.FC<BlogInfoTableProps> = () => {
   );
   return (
     <Table
-      className="mt-4"
+      className="mt-4 w-full"
       loading={{
         spinning: categoryListLoading || blogInfoLoading,
       }}

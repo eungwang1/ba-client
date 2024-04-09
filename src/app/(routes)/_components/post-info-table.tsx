@@ -96,7 +96,7 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
   return (
     <>
       <Table
-        className="mt-4"
+        className="mt-4 w-full"
         loading={{
           spinning: searchAvailabilityLoading || categoryListLoading,
         }}
