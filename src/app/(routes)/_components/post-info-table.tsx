@@ -1,15 +1,17 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import useSearchAvailability from "../_lib/hooks/useSearchAvailability";
 import {
   CommentOutlined,
   HeartOutlined,
   PictureOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 import PostRankBox from "./post-rank-box";
-import { Collapse, Input, Table, Tag, theme } from "antd";
+import { Table, theme } from "antd";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { postsColumns } from "../_lib/constants/table";
 import useBlogCategoryList from "../_lib/hooks/useBlogCategoryList";
+import PostInfoModal from "./post-info-modal";
 
 interface PostInfoTableProps {}
 
@@ -19,6 +21,8 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [postInfoModalOpen, setPostInfoModalOpen] = useState(false);
+  const [selectedPostUrl, setSelectedPostUrl] = useState("");
   const params = new URLSearchParams(searchParams.toString());
   const { data: categoryList, isLoading: categoryListLoading } =
     useBlogCategoryList();
@@ -28,7 +32,7 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
     () =>
       posts.map((post) => ({
         ...post,
-        ["co/sy/th"]: (
+        ["co/sy/th/tl"]: (
           <div
             style={{
               width: "100%",
@@ -44,6 +48,9 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
             </div>
             <div>
               <PictureOutlined /> {post.thumbnailCount}
+            </div>
+            <div>
+              <EditOutlined /> {post.textLength}
             </div>
           </div>
         ),
@@ -78,25 +85,42 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
       })),
     [posts]
   );
+  const onClickPostTitle = (url: string) => {
+    setSelectedPostUrl(url);
+    setPostInfoModalOpen(true);
+  };
+  const onClickPostInfoModalCancel = () => {
+    setPostInfoModalOpen(false);
+    setSelectedPostUrl("");
+  };
   return (
-    <Table
-      className="mt-4"
-      loading={{
-        spinning: searchAvailabilityLoading || categoryListLoading,
-      }}
-      dataSource={formattedPosts}
-      bordered
-      scroll={{ x: true }}
-      columns={postsColumns}
-      pagination={{
-        pageSize: 10,
-        total: categoryList ? Number(categoryList.postCnt) : 0,
-        onChange(page) {
-          params.set("p", String(page));
-          router.push(`${pathname}?${params.toString()}`);
-        },
-      }}
-    />
+    <>
+      <Table
+        className="mt-4"
+        loading={{
+          spinning: searchAvailabilityLoading || categoryListLoading,
+        }}
+        dataSource={formattedPosts}
+        bordered
+        scroll={{ x: true }}
+        columns={postsColumns}
+        pagination={{
+          pageSize: 10,
+          total: categoryList ? Number(categoryList.postCnt) : 0,
+          onChange(page) {
+            params.set("p", String(page));
+            router.push(`${pathname}?${params.toString()}`);
+          },
+        }}
+      />
+      {postInfoModalOpen && (
+        <PostInfoModal
+          open={postInfoModalOpen}
+          url={selectedPostUrl}
+          onCancel={onClickPostInfoModalCancel}
+        />
+      )}
+    </>
   );
 };
 

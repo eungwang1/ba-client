@@ -41,6 +41,7 @@ export const GET_SEARCH_AVAILABILITY = gql`
         sympathyCnt
         titleWithInspectMessage
         thumbnailCount
+        textLength
       }
     }
   }

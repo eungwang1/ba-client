@@ -8,9 +8,9 @@ export const postsColumns: ColumnsType = [
     width: 300,
   },
   {
-    title: "공감/댓글/사진",
-    dataIndex: "co/sy/th",
-    key: "co/sy/th",
+    title: "공감/댓글/사진/글자수",
+    dataIndex: "co/sy/th/tl",
+    key: "co/sy/th/tl",
     width: 140,
   },
 
