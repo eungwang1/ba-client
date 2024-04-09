@@ -22,13 +22,13 @@ export default HomePage;
 
 const tabItems: TabsProps["items"] = [
   {
-    key: "keyword",
-    label: "키워드",
-    children: <KeywordTab />,
-  },
-  {
     key: "analysis",
     label: "분석",
     children: <BlogAnalysisTab />,
+  },
+  {
+    key: "keyword",
+    label: "키워드",
+    children: <KeywordTab />,
   },
 ];
