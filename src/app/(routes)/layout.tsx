@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { CounterStoreProvider } from "../_providers/counter-store-provider";
 import { TanstackProviders } from "../_providers/tanstack-provider";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "../_styles/global.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,6 +27,7 @@ export default function RootLayout({
           </TanstackProviders>
         </CounterStoreProvider>
       </body>
+      <GoogleAnalytics gaId="G-88TSY80QY8" />
     </html>
   );
 }
