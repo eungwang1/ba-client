@@ -14,7 +14,7 @@ const useBlogCategoryList = () => {
     queryKey: ["getBlogCategoryList", blogId],
     queryFn: async () => {
       try {
-        if (!blogId) return;
+        if (!blogId) return null;
         const res = await client.request<
           GetBlogCategoryListQuery,
           GetBlogCategoryListQueryVariables

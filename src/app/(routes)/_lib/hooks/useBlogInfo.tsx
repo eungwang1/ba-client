@@ -14,7 +14,7 @@ const useBlogInfo = () => {
     queryKey: ["getBlogInfo", blogId],
     queryFn: async () => {
       try {
-        if (!blogId) return;
+        if (!blogId) return null;
         const res = await client.request<
           GetBlogInfoQuery,
           GetBlogInfoQueryVariables

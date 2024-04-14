@@ -14,7 +14,7 @@ const useNaverKeywordSearch = () => {
     queryKey: ["getKewordSearchCount", keyword],
     queryFn: async () => {
       try {
-        if (!keyword) return;
+        if (!keyword) return null;
         const res = await client.request<
           GetKeywordSearchCountQuery,
           GetKeywordSearchCountQueryVariables
