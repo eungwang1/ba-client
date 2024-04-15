@@ -17,6 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <meta
+          name="naver-site-verification"
+          content="ba5d25ba28a1056c7c2e517133d829f3e94f9cc8"
+        />
+      </head>
       <body>
         <CounterStoreProvider>
           <TanstackProviders>
