@@ -5,7 +5,7 @@ import { LocalStorage } from "@/app/_lib/utils/localStorage";
 import { useSearchParams } from "next/navigation";
 import usePostSearchRank from "../_lib/hooks/usePostSearchRank";
 import { uniqueId } from "lodash";
-import { Input } from "antd";
+import { Input, Modal, message } from "antd";
 
 interface RankHistory {
   keyword: string;
@@ -165,6 +165,9 @@ const PostRankBox: React.FC<PostRankBoxProps> = ({ logNo }) => {
         enterButton="검색"
         loading={isLoading}
         onSearch={(value) => {
+          if (histories.flatMap((el) => el.keyword).includes(value)) {
+            message.warning("이미 검색한 키워드입니다.");
+          }
           setKeyword(value);
         }}
       />
