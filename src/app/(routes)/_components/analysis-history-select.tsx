@@ -10,6 +10,7 @@ import { LocalStorage } from "@/app/_lib/utils/localStorage";
 import { BLOG_ANALYSIS_HISTORY_KEY } from "../_lib/constants/storageKey";
 import { extractBlogId } from "../_lib/utils";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import SelectLabelWithRemoveButton from "@/app/_components/select/select-label-with-remove-button";
 
 interface AnalysisHistorySelectProps {}
 
@@ -58,18 +59,10 @@ const AnalysisHistorySelect: React.FC<AnalysisHistorySelectProps> = () => {
         size="large"
         options={analysisHistory.map((blogId) => ({
           label: (
-            <div className="flex justify-between">
-              <div>{blogId}</div>
-              <button
-                className="select-remove-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleDeleteHistory(blogId);
-                }}
-              >
-                <CloseOutlined />
-              </button>
-            </div>
+            <SelectLabelWithRemoveButton
+              label={blogId}
+              onRemove={() => handleDeleteHistory(blogId)}
+            />
           ),
           value: blogId,
         }))}
@@ -81,7 +74,6 @@ const AnalysisHistorySelect: React.FC<AnalysisHistorySelectProps> = () => {
         style={{
           minWidth: 200,
         }}
-        removeIcon={<div>hi</div>}
       />
     </div>
   );

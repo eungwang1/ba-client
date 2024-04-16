@@ -26,9 +26,4 @@ table {
     top : 0 !important;
   }
 }
-.ant-select-selection-item {
-  .select-remove-btn {
-    display: none;
-  }
-}
 
