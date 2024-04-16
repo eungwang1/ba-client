@@ -74,7 +74,14 @@ export const GET_BLOG_INFO = gql`
           visitor
           date
         }
-        influencerUrl
+        influencerInfo {
+          nickName
+          keyword
+          subscriberCount
+          introduction
+          category
+          url
+        }
       }
     }
   }
