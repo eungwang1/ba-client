@@ -34,7 +34,6 @@ export const blogInfoColumns: ColumnsType = [
     dataIndex: "blogName",
     key: "blogName",
   },
-
   {
     title: "방문자(최근5일)",
     dataIndex: "visitorCnt",
@@ -64,5 +63,10 @@ export const blogInfoColumns: ColumnsType = [
     title: "구독자",
     dataIndex: "subscriber",
     key: "subscriber",
+  },
+  {
+    title: "인플",
+    dataIndex: "influencer",
+    key: "influencer",
   },
 ];
