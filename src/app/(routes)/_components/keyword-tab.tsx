@@ -2,6 +2,7 @@ import React from "react";
 import { Input, Table } from "antd";
 import useNaverKeywordSearch from "../_lib/hooks/useKeywordSearchCount";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import KeywordHistorySelect from "./keyword-history-select";
 
 interface KeywordTabProps {}
 
@@ -24,6 +25,7 @@ const KeywordTab: React.FC<KeywordTabProps> = () => {
         }}
         loading={isLoading}
       />
+      <KeywordHistorySelect />
       <Table
         className="mt-4 w-full"
         loading={{

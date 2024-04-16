@@ -1,9 +1,4 @@
 import { Select } from "antd";
-import {
-  DeleteOutlined,
-  ClearOutlined,
-  CloseOutlined,
-} from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import useBlogCategoryList from "../_lib/hooks/useBlogCategoryList";
 import { LocalStorage } from "@/app/_lib/utils/localStorage";
