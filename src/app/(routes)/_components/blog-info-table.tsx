@@ -5,6 +5,7 @@ import useBlogInfo from "../_lib/hooks/useBlogInfo";
 import { blogInfoColumns } from "../_lib/constants/table";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import InfluencerInfo from "./influencer-info";
 
 interface BlogInfoTableProps {}
 
@@ -60,6 +61,22 @@ const BlogInfoTable: React.FC<BlogInfoTableProps> = () => {
                     },
                   ]}
                 />
+              ),
+              influencer: blogInfo.blogInfo.influencerInfo ? (
+                <Collapse
+                  size="small"
+                  items={[
+                    {
+                      key: "influencer",
+                      label: blogInfo.blogInfo.influencerInfo.nickName,
+                      children: (
+                        <InfluencerInfo {...blogInfo.blogInfo.influencerInfo} />
+                      ),
+                    },
+                  ]}
+                />
+              ) : (
+                <div className="text-red-500 text-xl">✖</div>
               ),
             },
           ]
