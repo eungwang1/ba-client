@@ -6,7 +6,7 @@ import { Input } from "antd";
 import { extractBlogId } from "../_lib/utils";
 import BlogInfoTable from "./blog-info-table";
 import PostInfoTable from "./post-info-table";
-import AnalysisHistoryTagList from "./analysis-history-tag-list";
+import AnalysisHistorySelect from "./analysis-history-select";
 
 interface BlogAnalysisTabProps {}
 const BlogAnalysisTab: React.FC<BlogAnalysisTabProps> = () => {
@@ -28,7 +28,7 @@ const BlogAnalysisTab: React.FC<BlogAnalysisTabProps> = () => {
           router.push(`${pathname}?${params.toString()}`);
         }}
       />
-      <AnalysisHistoryTagList />
+      <AnalysisHistorySelect />
       <BlogInfoTable />
       <PostInfoTable />
     </div>

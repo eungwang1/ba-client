@@ -1,4 +1,9 @@
-import { Tag } from "antd";
+import { Select } from "antd";
+import {
+  DeleteOutlined,
+  ClearOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import useBlogCategoryList from "../_lib/hooks/useBlogCategoryList";
 import { LocalStorage } from "@/app/_lib/utils/localStorage";
@@ -6,9 +11,9 @@ import { BLOG_ANALYSIS_HISTORY_KEY } from "../_lib/constants/storageKey";
 import { extractBlogId } from "../_lib/utils";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-interface AnalysisHistoryTagListProps {}
+interface AnalysisHistorySelectProps {}
 
-const AnalysisHistoryTagList: React.FC<AnalysisHistoryTagListProps> = () => {
+const AnalysisHistorySelect: React.FC<AnalysisHistorySelectProps> = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -45,27 +50,41 @@ const AnalysisHistoryTagList: React.FC<AnalysisHistoryTagListProps> = () => {
     }
   }, [categoryList]);
 
-  const onClickTag = (blogId: string) => {
-    params.set("b", blogId);
-    router.push(`${pathname}?${params.toString()}`);
-  };
-
   return (
     <div className="mt-3 flex gap-2">
-      {analysisHistory.length > 0 &&
-        analysisHistory.map((blogId, index) => (
-          <Tag
-            closable
-            key={blogId}
-            onClick={() => onClickTag(blogId)}
-            onClose={() => handleDeleteHistory(blogId)}
-            color={index === 0 ? "blue" : "default"}
-          >
-            {blogId}
-          </Tag>
-        ))}
+      <Select
+        placeholder="검색기록"
+        className="analysis-history-select"
+        size="large"
+        options={analysisHistory.map((blogId) => ({
+          label: (
+            <div className="flex justify-between">
+              <div>{blogId}</div>
+              <button
+                className="select-remove-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeleteHistory(blogId);
+                }}
+              >
+                <CloseOutlined />
+              </button>
+            </div>
+          ),
+          value: blogId,
+        }))}
+        value={blogId}
+        onSelect={(value) => {
+          params.set("b", value);
+          router.push(`${pathname}?${params.toString()}`);
+        }}
+        style={{
+          minWidth: 200,
+        }}
+        removeIcon={<div>hi</div>}
+      />
     </div>
   );
 };
 
-export default AnalysisHistoryTagList;
+export default AnalysisHistorySelect;
