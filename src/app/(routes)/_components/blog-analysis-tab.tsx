@@ -25,6 +25,7 @@ const BlogAnalysisTab: React.FC<BlogAnalysisTabProps> = () => {
         loading={searchAvailabilityLoading || categoryListLoading}
         onSearch={(value) => {
           params.set("b", extractBlogId(value));
+          params.delete("p");
           router.push(`${pathname}?${params.toString()}`);
         }}
       />

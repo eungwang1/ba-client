@@ -22,6 +22,7 @@ const AnalysisHistorySelect: React.FC<AnalysisHistorySelectProps> = () => {
   const handleDeleteHistory = (id: string) => {
     if (id === extractBlogId(String(blogId))) {
       params.delete("b");
+      params.delete("p");
       router.push(`${pathname}?${params.toString()}`);
     }
     const newHistory = analysisHistory.filter((history) => history !== id);
@@ -64,6 +65,7 @@ const AnalysisHistorySelect: React.FC<AnalysisHistorySelectProps> = () => {
         value={blogId}
         onSelect={(value) => {
           params.set("b", value);
+          params.delete("p");
           router.push(`${pathname}?${params.toString()}`);
         }}
         style={{
