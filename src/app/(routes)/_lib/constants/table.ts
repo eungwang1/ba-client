@@ -18,13 +18,19 @@ export const postsColumns: ColumnsType = [
     title: "노출",
     dataIndex: "isSearchAvailability",
     key: "isSearchAvailability",
-    width: 10,
+    width: 1,
   },
   {
     title: "순위",
     dataIndex: "rank",
     key: "rank",
     width: 300,
+  },
+  {
+    title: "분석",
+    dataIndex: "analysis",
+    key: "analysis",
+    width: 1,
   },
 ];
 

@@ -160,6 +160,7 @@ const PostRankBox: React.FC<PostRankBoxProps> = ({ logNo }) => {
   return (
     <div>
       <Input.Search
+        className="mt-4"
         key={page + (blogId || "")}
         placeholder="키워드"
         enterButton="검색"

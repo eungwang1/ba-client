@@ -7,7 +7,7 @@ import {
   EditOutlined,
 } from "@ant-design/icons";
 import PostRankBox from "./post-rank-box";
-import { Table, theme } from "antd";
+import { Button, Table, theme } from "antd";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { postsColumns } from "../_lib/constants/table";
 import useBlogCategoryList from "../_lib/hooks/useBlogCategoryList";
@@ -22,7 +22,6 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [postInfoModalOpen, setPostInfoModalOpen] = useState(false);
-  const [selectedPostUrl, setSelectedPostUrl] = useState("");
   const params = new URLSearchParams(searchParams.toString());
   const { data: categoryList, isLoading: categoryListLoading } =
     useBlogCategoryList();
@@ -32,6 +31,9 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
     () =>
       posts.map((post) => ({
         ...post,
+        analysis: (
+          <Button onClick={() => setPostInfoModalOpen(true)}>분석하기</Button>
+        ),
         ["co/sy/th/tl"]: (
           <div
             style={{
@@ -85,14 +87,7 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
       })),
     [posts]
   );
-  const onClickPostTitle = (url: string) => {
-    setSelectedPostUrl(url);
-    setPostInfoModalOpen(true);
-  };
-  const onClickPostInfoModalCancel = () => {
-    setPostInfoModalOpen(false);
-    setSelectedPostUrl("");
-  };
+
   return (
     <>
       <Table
@@ -116,8 +111,7 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
       {postInfoModalOpen && (
         <PostInfoModal
           open={postInfoModalOpen}
-          url={selectedPostUrl}
-          onCancel={onClickPostInfoModalCancel}
+          onCancel={() => setPostInfoModalOpen(false)}
         />
       )}
     </>
