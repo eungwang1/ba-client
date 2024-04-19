@@ -143,7 +143,11 @@ const PostInfoContent: React.FC<PostInfoContentProps> = ({
           size="small"
           title={
             <div className="flex flex-col gap-1">
-              <a href="link" target="_blank" rel="noreferrer">
+              <a
+                href={`https://blog.naver.com/${blogId}/${postId}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span className="text-lg font-bold break-all whitespace-pre-wrap text-gray-700 hover:underline">
                   {data?.title.trim()}
                 </span>
