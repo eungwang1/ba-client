@@ -11,7 +11,7 @@ import { Table, theme } from "antd";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { postsColumns } from "../_lib/constants/table";
 import useBlogCategoryList from "../_lib/hooks/useBlogCategoryList";
-import PostInfoModal from "./post-info-modal";
+import PostAnalysisButton from "./post-analysis-button";
 
 interface PostInfoTableProps {}
 
@@ -21,17 +21,22 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [postInfoModalOpen, setPostInfoModalOpen] = useState(false);
-  const [selectedPostUrl, setSelectedPostUrl] = useState("");
   const params = new URLSearchParams(searchParams.toString());
   const { data: categoryList, isLoading: categoryListLoading } =
     useBlogCategoryList();
   const { data: posts, isLoading: searchAvailabilityLoading } =
     useSearchAvailability();
+  const blogId = searchParams.get("b");
   const formattedPosts = useMemo(
     () =>
       posts.map((post) => ({
         ...post,
+        analysis: (
+          <PostAnalysisButton
+            postId={String(post.logNo)}
+            blogId={String(blogId)}
+          />
+        ),
         ["co/sy/th/tl"]: (
           <div
             style={{
@@ -85,14 +90,7 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
       })),
     [posts]
   );
-  const onClickPostTitle = (url: string) => {
-    setSelectedPostUrl(url);
-    setPostInfoModalOpen(true);
-  };
-  const onClickPostInfoModalCancel = () => {
-    setPostInfoModalOpen(false);
-    setSelectedPostUrl("");
-  };
+
   return (
     <>
       <Table
@@ -113,13 +111,6 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
           },
         }}
       />
-      {postInfoModalOpen && (
-        <PostInfoModal
-          open={postInfoModalOpen}
-          url={selectedPostUrl}
-          onCancel={onClickPostInfoModalCancel}
-        />
-      )}
     </>
   );
 };

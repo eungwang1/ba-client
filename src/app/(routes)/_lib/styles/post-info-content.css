@@ -1,0 +1,14 @@
+.ant-descriptions-view {
+    overflow-x: auto !important;
+
+    
+}
+.ant-modal-content {
+    overflow-y: auto !important;
+}
+/* colspan 이 1인요소 */
+.ant-descriptions-item-content[colspan="1"] {
+    min-width: 50px !important;
+    max-width: 50px !important;
+}
+

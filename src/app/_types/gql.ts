@@ -17,6 +17,7 @@ const documents = {
     "\n  query GetBlogCategoryList($input: GetBlogCategoryListInput!) {\n    getBlogCategoryList(input: $input) {\n      categories {\n        categoryName\n        postCnt\n      }\n      error\n      ok\n      postCnt\n    }\n  }\n": types.GetBlogCategoryListDocument,
     "\n  query GetSearchAvailability($input: GetSearchAvailabilityInput!) {\n    getSearchAvailability(input: $input) {\n      error\n      ok\n      posts {\n        isSearchAvailability\n        commentCnt\n        link\n        logNo\n        sympathyCnt\n        titleWithInspectMessage\n        thumbnailCount\n        textLength\n      }\n    }\n  }\n": types.GetSearchAvailabilityDocument,
     "\n  query GetSearchRank($input: GetSearchRankInput!) {\n    getSearchRank(input: $input) {\n      naverSmartSearchRank\n      naverSmartSearchTitle\n      naverBlogSearchRank\n      ok\n      error\n      postLink\n    }\n  }\n": types.GetSearchRankDocument,
+    "\n  query GetBlogPostDetail($input: GetBlogPostDetailInput!) {\n    getBlogPostDetail(input: $input) {\n      linkList\n      text\n      textLength\n      ok\n      error\n      tagList\n      likeCount\n      imageCount\n      commentCount\n      title\n      postAddDate\n      uniqueMorphemeList {\n        count\n        word\n      }\n    }\n  }\n": types.GetBlogPostDetailDocument,
     "\n  query GetBlogInfo($input: GetBlogInfoInput!) {\n    getBlogInfo(input: $input) {\n      ok\n      error\n      blogInfo {\n        blogName\n        subscriberCount\n        blogDirectoryName\n        totalVisitorCount\n        blogVisitor {\n          visitor\n          date\n        }\n        influencerInfo {\n          nickName\n          keyword\n          subscriberCount\n          introduction\n          category\n          url\n        }\n      }\n    }\n  }\n": types.GetBlogInfoDocument,
 };
 
@@ -50,6 +51,10 @@ export function graphql(source: "\n  query GetSearchAvailability($input: GetSear
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query GetSearchRank($input: GetSearchRankInput!) {\n    getSearchRank(input: $input) {\n      naverSmartSearchRank\n      naverSmartSearchTitle\n      naverBlogSearchRank\n      ok\n      error\n      postLink\n    }\n  }\n"): (typeof documents)["\n  query GetSearchRank($input: GetSearchRankInput!) {\n    getSearchRank(input: $input) {\n      naverSmartSearchRank\n      naverSmartSearchTitle\n      naverBlogSearchRank\n      ok\n      error\n      postLink\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query GetBlogPostDetail($input: GetBlogPostDetailInput!) {\n    getBlogPostDetail(input: $input) {\n      linkList\n      text\n      textLength\n      ok\n      error\n      tagList\n      likeCount\n      imageCount\n      commentCount\n      title\n      postAddDate\n      uniqueMorphemeList {\n        count\n        word\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetBlogPostDetail($input: GetBlogPostDetailInput!) {\n    getBlogPostDetail(input: $input) {\n      linkList\n      text\n      textLength\n      ok\n      error\n      tagList\n      likeCount\n      imageCount\n      commentCount\n      title\n      postAddDate\n      uniqueMorphemeList {\n        count\n        word\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
