@@ -1,4 +1,4 @@
-import { Descriptions, DescriptionsProps, Skeleton, Tag } from "antd";
+import { Descriptions, DescriptionsProps, Skeleton, Tag, message } from "antd";
 import {
   LinkOutlined,
   CommentOutlined,
@@ -6,10 +6,11 @@ import {
   PictureOutlined,
   EditOutlined,
 } from "@ant-design/icons";
-import React from "react";
+import React, { useEffect } from "react";
 import "../_lib/styles/post-info-content.css";
 import useBlogPostDetail from "../_lib/hooks/useBlogPostDetail";
 import PostInfoContentMain from "./post-info-content-main";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface PostInfoContentProps {
   postId: string;
@@ -20,7 +21,11 @@ const PostInfoContent: React.FC<PostInfoContentProps> = ({
   postId,
   blogId,
 }) => {
-  const { data, isLoading } = useBlogPostDetail({
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams.toString());
+  const { data, isLoading, error } = useBlogPostDetail({
     postId,
     blogId,
   });
@@ -128,6 +133,15 @@ const PostInfoContent: React.FC<PostInfoContentProps> = ({
       span: 5,
     },
   ];
+
+  useEffect(() => {
+    if (error) {
+      params.delete("bid");
+      params.delete("pid");
+      router.push(`${pathname}?${params.toString()}`);
+      message.warning("데이터를 불러오는 중 오류가 발생했습니다.");
+    }
+  }, [error]);
 
   return (
     <div className="mt-2">

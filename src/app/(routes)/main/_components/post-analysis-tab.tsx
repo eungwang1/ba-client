@@ -4,6 +4,7 @@ import useBlogPostDetail from "../_lib/hooks/useBlogPostDetail";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { extractBlogIdAndPostId } from "../_lib/utils";
 import PostInfoContent from "./post-info-content";
+import PostHistorySelect from "./post-history-select";
 
 interface PostAnalysisTabProps {}
 
@@ -38,8 +39,9 @@ const PostAnalysisTab: React.FC<PostAnalysisTabProps> = () => {
           router.push(`${pathname}?${params.toString()}`);
         }}
       />
+      <PostHistorySelect />
       {blogId && postId && (
-        <div className="mt-6">
+        <div className="mt-4">
           <PostInfoContent blogId={blogId} postId={postId} />
         </div>
       )}

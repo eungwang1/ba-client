@@ -32,12 +32,12 @@ const useBlogPostDetail = ({ postId, blogId }: UseBlogPostDetailProps) => {
       }
     },
   });
-
-  const { data, isLoading } = useQuery(options);
+  const { data, isLoading, error } = useQuery(options);
 
   return {
     data: data?.getBlogPostDetail,
     isLoading,
+    error,
   };
 };
 
