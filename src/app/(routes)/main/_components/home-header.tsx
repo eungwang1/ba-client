@@ -10,7 +10,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = () => {
     <div className="bg-blue-400 text-white py-4 ">
       <div className="flex justify-between max-w-screen-xl mx-auto px-4 items-center">
         <div className="w-full flex items-end gap-2 justify-start">
-          <h1 className="text-2xl font-bold">비에이</h1>
+          <h1 className="text-2xl font-bold">블로그에이</h1>
           <p>네이버 블로그 분석 서비스</p>
         </div>
         <Tooltip title="이용자 단톡방">
