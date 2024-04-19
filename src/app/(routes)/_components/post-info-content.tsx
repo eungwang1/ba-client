@@ -9,6 +9,7 @@ import {
 import React from "react";
 import "../_lib/styles/post-info-content.css";
 import useBlogPostDetail from "../_lib/hooks/useBlogPostDetail";
+import PostInfoContentMain from "./post-info-content-main";
 
 interface PostInfoContentProps {
   postId: string;
@@ -74,12 +75,7 @@ const PostInfoContent: React.FC<PostInfoContentProps> = ({
     {
       key: "4",
       label: "본문",
-      children: (
-        <div className="break-all whitespace-pre-wrap">
-          {data?.text.slice(0, 100) + "..."}
-          <button className="text-blue-500 underline">더보기</button>
-        </div>
-      ),
+      children: <PostInfoContentMain text={data?.text || ""} />,
       span: 5,
       contentStyle: {
         overflow: "auto",
