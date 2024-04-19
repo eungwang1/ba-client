@@ -1,18 +1,14 @@
-import {
-  Collapse,
-  Descriptions,
-  DescriptionsProps,
-  Modal,
-  ModalProps,
-  theme,
-} from "antd";
+import { Modal, ModalProps } from "antd";
 import React from "react";
 import PostInfoContent from "./post-info-content";
 
-interface PostInfoModalProps extends Omit<ModalProps, "children"> {}
+interface PostInfoModalProps extends Omit<ModalProps, "children"> {
+  postId: string;
+  blogId: string;
+}
 
 const PostInfoModal: React.FC<PostInfoModalProps> = (props) => {
-  const { ...modalProps } = props;
+  const { postId, blogId, ...modalProps } = props;
 
   return (
     <Modal
@@ -24,7 +20,7 @@ const PostInfoModal: React.FC<PostInfoModalProps> = (props) => {
       }}
       footer={null}
     >
-      <PostInfoContent />
+      <PostInfoContent postId={postId} blogId={blogId} />
     </Modal>
   );
 };

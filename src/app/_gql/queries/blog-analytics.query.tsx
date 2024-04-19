@@ -60,6 +60,28 @@ export const GET_POST_SEARCH_RANK = gql`
   }
 `;
 
+export const GET_BLOG_POST_DETAIL = gql`
+  query GetBlogPostDetail($input: GetBlogPostDetailInput!) {
+    getBlogPostDetail(input: $input) {
+      linkList
+      text
+      textLength
+      ok
+      error
+      tagList
+      likeCount
+      imageCount
+      commentCount
+      title
+      postAddDate
+      uniqueMorphemeList {
+        count
+        word
+      }
+    }
+  }
+`;
+
 export const GET_BLOG_INFO = gql`
   query GetBlogInfo($input: GetBlogInfoInput!) {
     getBlogInfo(input: $input) {

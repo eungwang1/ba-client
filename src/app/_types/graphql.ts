@@ -1046,9 +1046,18 @@ export type GetBlogPostDetailInput = {
 
 export type GetBlogPostDetailOutput = {
   __typename?: 'GetBlogPostDetailOutput';
+  commentCount: Scalars['Float']['output'];
   error?: Maybe<Scalars['String']['output']>;
+  imageCount: Scalars['Float']['output'];
+  likeCount: Scalars['Float']['output'];
+  linkList: Array<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
+  postAddDate: Scalars['String']['output'];
+  tagList: Array<Scalars['String']['output']>;
+  text: Scalars['String']['output'];
   textLength: Scalars['Float']['output'];
+  title: Scalars['String']['output'];
+  uniqueMorphemeList: Array<UniqueMorpheme>;
 };
 
 export type GetBuyersOutput = {
@@ -3721,6 +3730,12 @@ export type ToggleExamCategoryBookmarkOutput = {
   ok: Scalars['Boolean']['output'];
 };
 
+export type UniqueMorpheme = {
+  __typename?: 'UniqueMorpheme';
+  count: Scalars['Float']['output'];
+  word: Scalars['String']['output'];
+};
+
 export type UpdateAdblockPermissionInput = {
   userId: Scalars['Float']['input'];
 };
@@ -4135,6 +4150,13 @@ export type GetSearchRankQueryVariables = Exact<{
 
 export type GetSearchRankQuery = { __typename?: 'Query', getSearchRank: { __typename?: 'GetSearchRankOutput', naverSmartSearchRank?: number | null, naverSmartSearchTitle?: string | null, naverBlogSearchRank?: number | null, ok: boolean, error?: string | null, postLink?: string | null } };
 
+export type GetBlogPostDetailQueryVariables = Exact<{
+  input: GetBlogPostDetailInput;
+}>;
+
+
+export type GetBlogPostDetailQuery = { __typename?: 'Query', getBlogPostDetail: { __typename?: 'GetBlogPostDetailOutput', linkList: Array<string>, text: string, textLength: number, ok: boolean, error?: string | null, tagList: Array<string>, likeCount: number, imageCount: number, commentCount: number, title: string, postAddDate: string, uniqueMorphemeList: Array<{ __typename?: 'UniqueMorpheme', count: number, word: string }> } };
+
 export type GetBlogInfoQueryVariables = Exact<{
   input: GetBlogInfoInput;
 }>;
@@ -4147,4 +4169,5 @@ export const GetKeywordSearchCountDocument = {"kind":"Document","definitions":[{
 export const GetBlogCategoryListDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetBlogCategoryList"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetBlogCategoryListInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getBlogCategoryList"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categoryName"}},{"kind":"Field","name":{"kind":"Name","value":"postCnt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"postCnt"}}]}}]}}]} as unknown as DocumentNode<GetBlogCategoryListQuery, GetBlogCategoryListQueryVariables>;
 export const GetSearchAvailabilityDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSearchAvailability"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetSearchAvailabilityInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSearchAvailability"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isSearchAvailability"}},{"kind":"Field","name":{"kind":"Name","value":"commentCnt"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"logNo"}},{"kind":"Field","name":{"kind":"Name","value":"sympathyCnt"}},{"kind":"Field","name":{"kind":"Name","value":"titleWithInspectMessage"}},{"kind":"Field","name":{"kind":"Name","value":"thumbnailCount"}},{"kind":"Field","name":{"kind":"Name","value":"textLength"}}]}}]}}]}}]} as unknown as DocumentNode<GetSearchAvailabilityQuery, GetSearchAvailabilityQueryVariables>;
 export const GetSearchRankDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSearchRank"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetSearchRankInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSearchRank"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"naverSmartSearchRank"}},{"kind":"Field","name":{"kind":"Name","value":"naverSmartSearchTitle"}},{"kind":"Field","name":{"kind":"Name","value":"naverBlogSearchRank"}},{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"postLink"}}]}}]}}]} as unknown as DocumentNode<GetSearchRankQuery, GetSearchRankQueryVariables>;
+export const GetBlogPostDetailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetBlogPostDetail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetBlogPostDetailInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getBlogPostDetail"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"linkList"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"textLength"}},{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"tagList"}},{"kind":"Field","name":{"kind":"Name","value":"likeCount"}},{"kind":"Field","name":{"kind":"Name","value":"imageCount"}},{"kind":"Field","name":{"kind":"Name","value":"commentCount"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"postAddDate"}},{"kind":"Field","name":{"kind":"Name","value":"uniqueMorphemeList"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"word"}}]}}]}}]}}]} as unknown as DocumentNode<GetBlogPostDetailQuery, GetBlogPostDetailQueryVariables>;
 export const GetBlogInfoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetBlogInfo"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetBlogInfoInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getBlogInfo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"blogInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blogName"}},{"kind":"Field","name":{"kind":"Name","value":"subscriberCount"}},{"kind":"Field","name":{"kind":"Name","value":"blogDirectoryName"}},{"kind":"Field","name":{"kind":"Name","value":"totalVisitorCount"}},{"kind":"Field","name":{"kind":"Name","value":"blogVisitor"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"visitor"}},{"kind":"Field","name":{"kind":"Name","value":"date"}}]}},{"kind":"Field","name":{"kind":"Name","value":"influencerInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nickName"}},{"kind":"Field","name":{"kind":"Name","value":"keyword"}},{"kind":"Field","name":{"kind":"Name","value":"subscriberCount"}},{"kind":"Field","name":{"kind":"Name","value":"introduction"}},{"kind":"Field","name":{"kind":"Name","value":"category"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetBlogInfoQuery, GetBlogInfoQueryVariables>;

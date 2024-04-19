@@ -7,11 +7,11 @@ import {
   EditOutlined,
 } from "@ant-design/icons";
 import PostRankBox from "./post-rank-box";
-import { Button, Table, theme } from "antd";
+import { Table, theme } from "antd";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { postsColumns } from "../_lib/constants/table";
 import useBlogCategoryList from "../_lib/hooks/useBlogCategoryList";
-import PostInfoModal from "./post-info-modal";
+import PostAnalysisButton from "./post-analysis-button";
 
 interface PostInfoTableProps {}
 
@@ -21,18 +21,21 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [postInfoModalOpen, setPostInfoModalOpen] = useState(false);
   const params = new URLSearchParams(searchParams.toString());
   const { data: categoryList, isLoading: categoryListLoading } =
     useBlogCategoryList();
   const { data: posts, isLoading: searchAvailabilityLoading } =
     useSearchAvailability();
+  const blogId = searchParams.get("b");
   const formattedPosts = useMemo(
     () =>
       posts.map((post) => ({
         ...post,
         analysis: (
-          <Button onClick={() => setPostInfoModalOpen(true)}>분석하기</Button>
+          <PostAnalysisButton
+            postId={String(post.logNo)}
+            blogId={String(blogId)}
+          />
         ),
         ["co/sy/th/tl"]: (
           <div
@@ -108,12 +111,6 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
           },
         }}
       />
-      {postInfoModalOpen && (
-        <PostInfoModal
-          open={postInfoModalOpen}
-          onCancel={() => setPostInfoModalOpen(false)}
-        />
-      )}
     </>
   );
 };
