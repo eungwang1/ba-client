@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import HomePage from "./_components/home-page";
+import HomePage from "./main/_components/home-page";
 
 export const metadata: Metadata = {
   title: "비에이 | Blog Analysis",

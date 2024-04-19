@@ -29,7 +29,12 @@ export default HomePage;
 const tabItems: TabsProps["items"] = [
   {
     key: "analysis",
-    label: "분석",
+    label: "블로그",
+    children: <BlogAnalysisTab />,
+  },
+  {
+    key: "post",
+    label: "포스팅",
     children: <BlogAnalysisTab />,
   },
   {
