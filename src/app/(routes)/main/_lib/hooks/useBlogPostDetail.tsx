@@ -7,8 +7,8 @@ import {
 import { queryOptions, useQuery } from "@tanstack/react-query";
 
 interface UseBlogPostDetailProps {
-  postId: string;
-  blogId: string;
+  postId: string | null;
+  blogId: string | null;
 }
 
 const useBlogPostDetail = ({ postId, blogId }: UseBlogPostDetailProps) => {
@@ -16,7 +16,7 @@ const useBlogPostDetail = ({ postId, blogId }: UseBlogPostDetailProps) => {
     queryKey: ["getBlogPostDetail", postId],
     queryFn: async () => {
       try {
-        if (!blogId) return null;
+        if (!postId || !blogId) return null;
         const res = await client.request<
           GetBlogPostDetailQuery,
           GetBlogPostDetailQueryVariables

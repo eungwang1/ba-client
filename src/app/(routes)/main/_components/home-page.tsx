@@ -7,6 +7,7 @@ import BlogAnalysisTab from "./blog-analysis-tab";
 import "../_lib/styles/home-page.css";
 import HomeHeader from "./home-header";
 import HomeFooter from "./home-footer";
+import PostAnalysisTab from "./post-analysis-tab";
 
 interface HomePageProps {}
 
@@ -35,7 +36,7 @@ const tabItems: TabsProps["items"] = [
   {
     key: "post",
     label: "포스팅",
-    children: <BlogAnalysisTab />,
+    children: <PostAnalysisTab />,
   },
   {
     key: "keyword",
