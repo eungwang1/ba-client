@@ -6,13 +6,12 @@ import {
 } from "@/app/_types/graphql";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
 
 const useSearchAvailability = () => {
   const params = useSearchParams();
   const blogId = params.get("b");
   const page = Number(params.get("p")) || 1;
-  const itemCount = 10;
+  const itemCount = 5;
   const options = queryOptions({
     queryKey: ["searchAvailability", blogId, page],
     queryFn: async () => {

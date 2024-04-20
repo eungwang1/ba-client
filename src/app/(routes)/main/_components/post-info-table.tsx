@@ -103,7 +103,7 @@ const PostInfoTable: React.FC<PostInfoTableProps> = () => {
         scroll={{ x: true }}
         columns={postsColumns}
         pagination={{
-          pageSize: 10,
+          pageSize: 5,
           total: categoryList ? Number(categoryList.postCnt) : 0,
           onChange(page) {
             params.set("p", String(page));
